@@ -180,6 +180,91 @@
       .layout-2cols{grid-template-columns:1fr}
       .wrap{margin:18px auto}
     }
+    /* --------------------- Responsive tweaks --------------------- */
+@media (max-width: 1000px) {
+  /* Single column for layout */
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Hide sidebar on smaller screens */
+  aside.sidebar {
+    display: none;
+  }
+
+  /* Hero section stacks vertically */
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-cta {
+    flex-wrap: wrap;
+  }
+
+  /* Right mini panel full width */
+  .hero > div:last-child {
+    width: 100%;
+  }
+
+  /* Two-column feed + recommended layout becomes single column */
+  .layout-2cols {
+    grid-template-columns: 1fr;
+  }
+
+  /* Course grid adapts to smaller screens */
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  /* Adjust topbar spacing */
+  header.topbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  /* Reduce wrap margin */
+  .wrap {
+    margin: 16px auto;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Stack hero CTA buttons */
+  .hero-cta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Floating ask button smaller */
+  .ask-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  /* Smaller avatars in feed / groups */
+  .layout-2cols img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  /* Reduce padding for feed cards */
+  .feed-card, .panel {
+    padding: 12px;
+  }
+}
+
   </style>
 </head>
 <body>
