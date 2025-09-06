@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Askly • Login or Signup</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Background slideshow */
+    .slideshow {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2; overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: slideShow 32s infinite;
+    }
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 8s; }
+    .slideshow img:nth-child(3) { animation-delay: 16s; }
+    .slideshow img:nth-child(4) { animation-delay: 24s; }
+
+    @keyframes slideShow {
+      0% { opacity: 0; }
+      8% { opacity: 1; }
+      25% { opacity: 1; }
+      33% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Dark overlay */
+    .overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: -1;
+    }
+
+    /* Auth card */
+    .auth-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .auth-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .auth-header button {
+      flex: 1; padding: 12px;
+      border: none; font-size: 1rem; font-weight: bold;
+      cursor: pointer; background: #f1f1f1; transition: 0.3s;
+    }
+    .auth-header button.active {
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      color: white;
+    }
+
+    .auth-form { display: none; flex-direction: column; gap: 15px; text-align: left; }
+    .auth-form.active { display: flex; }
+
+    .auth-form label { font-size: 0.9rem; color: #444; }
+    .auth-form input {
+      padding: 12px; border: 1px solid #ccc;
+      border-radius: 6px; font-size: 1rem;
+    }
+
+    .btn {
+      padding: 14px; border: none; border-radius: 30px;
+      font-weight: bold; font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      cursor: pointer; transition: 0.3s;
+    }
+    .btn:hover { opacity: 0.9; }
+
+    /* Social buttons */
+    .social-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 12px;
+      border-radius: 6px; font-weight: bold; cursor: pointer;
+      border: none; font-size: 0.95rem;
+    }
+    .google { background: #fff; color: #444; border: 1px solid #ddd; }
+    .google img { width: 18px; }
+    .facebook { background: #1877f2; color: #fff; }
+    .apple { background: #000; color: #fff; }
+
+    .divider {
+      text-align: center; margin: 15px 0;
+      color: #888; font-size: 0.85rem;
+    }
+
+    .alt { text-align: center; margin-top: 15px; font-size: 0.9rem; }
+    .alt a { color: #ff5722; text-decoration: none; font-weight: bold; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      .auth-container { margin: 0 15px; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background slideshow -->
+  <div class="slideshow">
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80" alt="Students studying in library">
+    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80" alt="Students outdoor reading">
+    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80" alt="Higher institution classroom">
+    <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=80" alt="Group study university">
+  </div>
+  <div class="overlay"></div>
+
+  <!-- Auth Card -->
+  <div class="auth-container">
+    <div class="auth-header">
+      <button id="loginTab" class="active">Login</button>
+      <button id="signupTab">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="auth-form active">
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" required>
+      <label>Password</label>
+      <input type="password" placeholder="Enter your password" required>
+      <button type="submit" class="btn">Login</button>
+
+      <div class="divider">or continue with</div>
+      <button type="button" class="social-btn google">
+        <img src="https://www.svgrepo.com/show/355037/google.svg" alt=""> Continue with Google
+      </button>
+      <button type="button" class="social-btn facebook">Continue with Facebook</button>
+      <button type="button" class="social-btn apple">Continue with Apple</button>
+
+      <div class="alt">Don’t have an account? <a href="#" onclick="switchTab('signup')">Sign up</a></div>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm" class="auth-form">
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your name" required>
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" required>
+      <label>Password</label>
+      <input type="password" placeholder="Create a password" required>
+      <button type="submit" class="btn">Sign Up</button>
+
+      <div class="divider">or sign up with</div>
+      <button type="button" class="social-btn google">
+        <img src="https://www.svgrepo.com/show/355037/google.svg" alt=""> Sign up with Google
+      </button>
+      <button type="button" class="social-btn facebook">Sign up with Facebook</button>
+      <button type="button" class="social-btn apple">Sign up with Apple</button>
+
+      <div class="alt">Already have an account? <a href="#" onclick="switchTab('login')">Login</a></div>
+    </form>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+
+    function switchTab(tab) {
+      if(tab === "login") {
+        loginTab.classList.add("active");
+        signupTab.classList.remove("active");
+        loginForm.classList.add("active");
+        signupForm.classList.remove("active");
+      } else {
+        signupTab.classList.add("active");
+        loginTab.classList.remove("active");
+        signupForm.classList.add("active");
+        loginForm.classList.remove("active");
+      }
+    }
+
+    loginTab.addEventListener("click", () => switchTab("login"));
+    signupTab.addEventListener("click", () => switchTab("signup"));
+  </script>
+
+</body>
+</html>

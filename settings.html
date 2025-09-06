@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Askly • Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#ff5722;--accent:#ff9800;--muted:#6b7280;--bg:#f6f7fb;--card:#fff;--max-width:1200px}
+*{box-sizing:border-box} body{font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#0f172a}
+.wrap{max-width:var(--max-width);margin:28px auto;padding:0 20px}
+header.topbar{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 18px rgba(255,87,34,0.18)}
+aside.sidebar{background:var(--card);border-radius:12px;padding:20px;border:1px solid #eef0f3;height:fit-content}
+aside nav a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#0f172a;text-decoration:none;margin-bottom:6px}
+aside nav a:hover{background:#fff8f5;color:var(--primary)}
+.small-muted{font-size:13px;color:var(--muted)}
+main.content{min-height:60vh}
+input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e7eb;margin-top:8px}
+button{cursor:pointer;padding:8px 12px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--primary),var(--accent));color:white;font-weight:600;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <a class="brand" href="dashboard.html">
+    <div class="logo">A</div>
+    <div><h1>Askly</h1><div class="small-muted">Connect knowledge to people</div></div>
+  </a>
+</header>
+
+<section class="layout">
+  <aside class="sidebar">
+    <nav>
+      <a href="dashboard.html">🏠 Home</a>
+      <a href="my-learning.html">📚 My Learning</a>
+      <a href="ask.html">❓ Ask a Question</a>
+      <a href="groups.html">👥 Study Groups</a>
+      <a href="saved.html">⭐ Saved</a>
+      <a href="settings.html">⚙️ Settings</a>
+      <a href="logout.html">🚪 Logout</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h2>Settings</h2>
+    <label>Name</label>
+    <input type="text" value="Alex">
+    <label>Email</label>
+    <input type="email" value="alex@student.example">
+    <label>Password</label>
+    <input type="password" value="password123">
+    <button onclick="alert('Settings saved!')">Save Settings</button>
+    <div style="margin-top:20px">
+      <button onclick="window.location.href='dashboard.html'">⬅ Back to Dashboard</button>
+    </div>
+  </main>
+</section>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Askly • My Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:"Poppins",sans-serif;background:#f6f7fb;margin:0;padding:0;color:#0f172a}
+.wrap{max-width:1200px;margin:30px auto;padding:0 20px}
+header{display:flex;align-items:center;gap:15px;margin-bottom:25px}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#ff5722,#ff9800);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+h1{margin:0;font-size:18px}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.sidebar{background:#fff;padding:20px;border-radius:12px;border:1px solid #eef0f3}
+.sidebar nav a{display:block;padding:10px;border-radius:10px;color:#0f172a;text-decoration:none;margin-bottom:6px}
+.sidebar nav a:hover{background:#fff8f5;color:#ff5722}
+.content{min-height:60vh;background:#fff;padding:20px;border-radius:12px;border:1px solid #eef0f3}
+h2{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.course{background:#fff;padding:14px;border-radius:12px;border:1px solid #eef0f3;display:flex;flex-direction:column;gap:12px;cursor:pointer}
+.course .thumb{height:120px;border-radius:8px;background:#f3f4f6;overflow:hidden}
+.course .thumb img{width:100%;height:100%;object-fit:cover}
+.course h4{margin:0;font-size:16px}
+.course .meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#6b7280}
+.course .progressline{height:8px;background:#f1f3f5;border-radius:999px;overflow:hidden}
+.course .progressline i{display:block;height:100%;background:linear-gradient(90deg,#ff5722,#ff9800);width:0%;transition:width 900ms ease}
+.course .actions{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+button{padding:8px 12px;border:none;border-radius:10px;background:linear-gradient(135deg,#ff5722,#ff9800);color:white;cursor:pointer}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">A</div>
+    <h1>Askly • My Learning</h1>
+  </header>
+
+  <section class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        <a href="dashboard.html">🏠 Home</a>
+        <a href="my-learning.html">📚 My Learning</a>
+        <a href="ask.html">❓ Ask a Question</a>
+        <a href="groups.html">👥 Study Groups</a>
+        <a href="saved.html">⭐ Saved</a>
+        <a href="settings.html">⚙️ Settings</a>
+        <a href="logout.html">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <h2>My Learning</h2>
+      <p>Here you will see all your enrolled courses and available courses.</p>
+      <div class="grid" id="courses"></div>
+    </main>
+  </section>
+</div>
+
+<script>
+// Sample courses (replace with backend data later)
+let courses = [
+  {
+    title: "Intro to Python",
+    description: "Learn Python from scratch.",
+    modules: 12,
+    image: "https://images.unsplash.com/photo-1517430816045-df4b7de77e8f?auto=format&fit=crop&w=800&q=60",
+    type: "free",
+    progress: 0
+  },
+  {
+    title: "Advanced AI Techniques",
+    description: "Deep dive into AI models.",
+    modules: 15,
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",
+    type: "paid",
+    price: 49,
+    progress: 0
+  },
+  {
+    title: "Data Visualization",
+    description: "Create stunning charts and dashboards.",
+    modules: 10,
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60",
+    type: "free",
+    progress: 25
+  }
+];
+
+// Render courses
+const coursesContainer = document.getElementById('courses');
+
+function renderCourses() {
+  coursesContainer.innerHTML = '';
+  courses.forEach((course, i) => {
+    const card = document.createElement('article');
+    card.className = 'course';
+    card.innerHTML = `
+      <div class="thumb"><img src="${course.image}" alt="${course.title}"></div>
+      <h4>${course.title}</h4>
+      <div class="meta"><span>${course.modules} modules</span><span>${course.type === 'paid' ? '$' + course.price : 'Free'}</span></div>
+      <div class="progressline"><i style="width:${course.progress}%"></i></div>
+      <div class="actions">
+        <button>${course.type === 'paid' ? 'Buy Course' : 'Enroll'}</button>
+        <span style="color:#6b7280;font-weight:600">${course.progress}%</span>
+      </div>
+    `;
+    // Card click
+    card.querySelector('button').addEventListener('click', () => {
+      if(course.type === 'paid'){
+        alert(`Redirect to payment for ${course.title} ($${course.price})`);
+        // TODO: Integrate Paystack / Stripe here
+      } else {
+        alert(`Enrolled in ${course.title}`);
+        course.progress = 0;
+        renderCourses(); // update progress
+      }
+    });
+    coursesContainer.appendChild(card);
+  });
+}
+
+// Initial render
+renderCourses();
+</script>
+</body>
+</html>
