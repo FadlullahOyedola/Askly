@@ -6,13 +6,51 @@
 <title>Askly • Logout</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f6f7fb;color:#0f172a;display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;text-align:center}
-button{cursor:pointer;padding:10px 14px;border-radius:8px;border:none;background:linear-gradient(135deg,#ff5722,#ff9800);color:white;font-weight:600;margin-top:12px}
+body {
+  font-family:"Poppins",system-ui,Segoe UI,Roboto,Arial;
+  margin:0;
+  background:#f6f7fb;
+  color:#0f172a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+}
+
+h2 { font-size:24px; margin-bottom:8px; }
+p { font-size:16px; margin-bottom:12px; }
+
+button {
+  cursor:pointer;
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(135deg,#ff5722,#ff9800);
+  color:white;
+  font-weight:600;
+  margin-top:12px;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  h2 { font-size:20px; }
+  p { font-size:14px; }
+  button { width:100%; padding:12px; }
+}
 </style>
 </head>
 <body>
 <h2>You have been logged out</h2>
 <p>Thanks for using Askly! 👋</p>
-<button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+<button onclick="window.location.href='index.html'">Back to Dashboard</button>
 </body>
 </html>
